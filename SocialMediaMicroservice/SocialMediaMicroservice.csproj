@@ -23,5 +23,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="EntityDLL\" />
+    <Folder Include="Helper\Twitter\" />
   </ItemGroup>
 </Project>
