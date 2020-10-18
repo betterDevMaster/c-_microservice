@@ -8,7 +8,7 @@
   "profile": "jungle",
   "region": "ap-northeast-2",
   "configuration": "Release",
-  "framework": "netcoreapp3.1",
+  "framework": "netcoreapp2.1",
   "s3-prefix": "SocialMediaMicroservice/",
   "template": "serverless.template",
   "template-parameters": "ShouldCreateBucket=true;BucketName="

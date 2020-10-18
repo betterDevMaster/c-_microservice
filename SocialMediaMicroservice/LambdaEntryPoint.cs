@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+using System.IO;
 
 namespace SocialMediaMicroservice
 {
@@ -10,7 +12,7 @@ namespace SocialMediaMicroservice
     /// This class extends from APIGatewayProxyFunction which contains the method FunctionHandlerAsync which is the 
     /// actual Lambda function entry point. The Lambda handler field should be set to
     /// 
-    /// SocialMediaMicroservice::SocialMediaMicroservice.LambdaEntryPoint::FunctionHandlerAsync
+    /// ChannelMicroservice::ChannelMicroservice.LambdaEntryPoint::FunctionHandlerAsync
     /// </summary>
     public class LambdaEntryPoint :
 
@@ -36,17 +38,6 @@ namespace SocialMediaMicroservice
         {
             builder
                 .UseStartup<Startup>();
-        }
-
-        /// <summary>
-        /// Use this override to customize the services registered with the IHostBuilder. 
-        /// 
-        /// It is recommended not to call ConfigureWebHostDefaults to configure the IWebHostBuilder inside this method.
-        /// Instead customize the IWebHostBuilder in the Init(IWebHostBuilder) overload.
-        /// </summary>
-        /// <param name="builder"></param>
-        protected override void Init(IHostBuilder builder)
-        {
         }
     }
 }
