@@ -10,7 +10,7 @@ namespace SocialMediaMicroservice.Helper.Facebook
 {
     public class GetFBUserInfo
     {
-        public const string FaceBookAppKey = "2680205765604021";
+        public const string FaceBookAppKey = "2557278674510925";
 
         public bool Run(string access_token)
         {
