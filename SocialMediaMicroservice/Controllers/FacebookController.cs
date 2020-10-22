@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using SocialMediaMicroservice.Helper.Twitter;
+using SocialMediaMicroservice.Helper.Facebook;
 
 namespace SocialMediaMicroservice.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class TwitterController : ControllerBase
+    public class FacebookController : ControllerBase
     {
-        public async Task<IActionResult> Tweet(string tweetText)
+        public IActionResult GetUserInfo(string access_token)
         {
-            var result = await new PostTweet().Run(tweetText);
+            var result = new GetFBUserInfo().Run(access_token);
 
             return Ok(result ? "success" : "error");
         }
