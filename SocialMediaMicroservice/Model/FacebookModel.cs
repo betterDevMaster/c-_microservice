@@ -20,6 +20,13 @@ namespace SocialMediaMicroservice.Model
         public string last_name { get; set; }
         [JsonProperty("emailAddress")]
         public string email { get; set; }
-        
+    }
+
+    public class FacebookAuthModel
+    {
+        [JsonProperty("access_token")]
+        public string accessToken { get; set; }
+        [JsonProperty("token_type")]
+        public string tokenType { get; set; }
     }
 }
