@@ -17,5 +17,19 @@ namespace SocialMediaMicroservice.Controllers
 
             return Ok(result ? "success" : "error");
         }
+
+        public IActionResult ReadUserTweets(string screen_name, int maxNumberOfTweets)
+        {
+            var result = new ReadUserTweets().Run(screen_name, maxNumberOfTweets);
+
+            return Ok(result);
+        }
+
+        public IActionResult ReadRetweets(string tweetId)
+        {
+            var result = new ReadRetweets().Run(tweetId);
+
+            return Ok(result);
+        }
     }
 }
