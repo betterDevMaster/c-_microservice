@@ -13,9 +13,9 @@ namespace SocialMediaMicroservice.Controllers
     public class InstagramController : Controller
     {
         [HttpPost]
-        public async Task<IActionResult> AddPost([FromBody]InstagramAddPostModel obj)
+        public IActionResult UserMedia(string access_token)
         {
-            var result = await new AddPost().Run(obj);
+            var result = new UserMedia().Run(access_token);
             return Ok(result ? "success" : "error");
         }
     }
