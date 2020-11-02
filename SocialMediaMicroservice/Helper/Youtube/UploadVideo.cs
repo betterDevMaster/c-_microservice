@@ -59,25 +59,34 @@ namespace SocialMediaMicroservice.Helper.Youtube
                 //  video.Snippet.Thumbnails = "";
 
 
-
-
                 video.Status = new VideoStatus();
                 video.Status.PrivacyStatus = "public";// "unlisted"; // or "private" or "public"
-                var filePath = @"E:\samplevideo\Sea waves & beach drone video _ Free HD Video - no copyright.mp4"; // Replace with path to actual movie file.
+                // Dinh Truong, 2nd November 2020 23:30, delete start
+                //var filePath = @"E:\samplevideo\Sea waves & beach drone video _ Free HD Video - no copyright.mp4"; // Replace with path to actual movie file.
+                // Dinh Truong 2nd November 2020 delete end
 
-                using (var fileStream = new FileStream(filePath, FileMode.Open))
+                string uploads = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
+                string fPath = Path.Combine(uploads, obj.filepath.FileName);
+                if (obj.filepath.Length > 0)
+                {
+                    using (Stream fStream = new FileStream(fPath, FileMode.Create))
+                    {
+                        await obj.filepath.CopyToAsync(fStream);
+                    }
+                }
+
+                using (var fileStream = new FileStream(fPath, FileMode.Open))
                 {
                     var videosInsertRequest = youtubeService.Videos.Insert(video, "snippet,status", fileStream, "video/*");
                     videosInsertRequest.ProgressChanged += videosInsertRequest_ProgressChanged;
                     videosInsertRequest.ResponseReceived += videosInsertRequest_ResponseReceived;
 
-                    await videosInsertRequest.UploadAsync();
+                    var x = await videosInsertRequest.UploadAsync();
                 }
                 return true;
             }
             catch (Exception ex)
             {
-
                 return false;
             }
         }

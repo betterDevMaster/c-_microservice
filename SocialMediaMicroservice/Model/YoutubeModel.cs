@@ -19,5 +19,7 @@ namespace SocialMediaMicroservice.Model
         public string title { get; set; }
         public IFormFile filepath { get; set; }
         public string description { get; set; }
+
+
     }
 }
