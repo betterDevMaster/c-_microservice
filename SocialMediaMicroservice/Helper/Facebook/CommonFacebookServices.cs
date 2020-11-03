@@ -43,7 +43,7 @@ namespace SocialMediaMicroservice.Helper.Facebook
             }
 
             if (accessToken.Trim().Length == 0)
-                throw new Exception("There is no Access Token");
+                throw new Exception("No action token detected!");
 
             return accessToken;
         }
@@ -66,6 +66,27 @@ namespace SocialMediaMicroservice.Helper.Facebook
             }
 
             return null;
+        }
+
+        public static string ProcessWebClientRequest(string url)
+        {
+            string response = string.Empty;
+
+            try
+            {
+                WebClient wc = new WebClient();
+                Stream data = wc.OpenRead(url);
+                StreamReader reader = new StreamReader(data);
+                response = reader.ReadToEnd();
+                data.Close();
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return response;
         }
     }
 }

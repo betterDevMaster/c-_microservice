@@ -12,13 +12,14 @@ namespace SocialMediaMicroservice.Controllers
     [ApiController]
     public class FacebookController : ControllerBase
     {
+        [HttpGet]
         public IActionResult GetUserInfo(string access_token)
         {
             var result = new GetFBUserInfo().Run(access_token);
 
             return Ok(result ? "success" : "error");
         }
-
+        [HttpGet]
         public async Task<IActionResult> PostFeed(string message)
         {
             var result = await new PostFeed().Run(message);
