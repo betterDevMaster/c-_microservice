@@ -23,6 +23,7 @@ namespace SocialMediaMicroservice.Helper.Youtube
                 UserCredential credential;
                 using (var stream = new FileStream("client_secrets.json", FileMode.Open, FileAccess.Read))
                 {
+                    // change later, this is a test user
                     credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                         GoogleClientSecrets.Load(stream).Secrets,
                         // This OAuth 2.0 access scope allows an application to upload files to the
@@ -45,7 +46,6 @@ namespace SocialMediaMicroservice.Helper.Youtube
                 video.Snippet.Description = obj.description;
                 video.Snippet.Tags = new string[] { "tag1", "tag2", "Jungle" };
                 video.Snippet.CategoryId = "22"; // See https://developers.google.com/youtube/v3/docs/videoCategories/list
-
                 //  video.Snippet.ChannelId = "";
                 //  video.Snippet.ChannelTitle = "";
                 //  video.Snippet.DefaultAudioLanguage = "";
@@ -82,6 +82,10 @@ namespace SocialMediaMicroservice.Helper.Youtube
                     videosInsertRequest.ResponseReceived += videosInsertRequest_ResponseReceived;
 
                     var x = await videosInsertRequest.UploadAsync();
+                    if(x.Status == UploadStatus.Failed)
+                    {
+                        return false;
+                    }
                 }
                 return true;
             }
