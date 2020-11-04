@@ -22,6 +22,7 @@
     <PackageReference Include="Google.Apis" Version="1.48.0" />
     <PackageReference Include="Google.Apis.YouTube.v3" Version="1.47.0.2008" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration" Version="2.1.10" />
+    <PackageReference Include="Sparkle.LinkedInNET" Version="1.0.15" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
   <ItemGroup>
