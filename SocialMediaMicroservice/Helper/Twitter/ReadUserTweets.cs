@@ -25,7 +25,6 @@ namespace SocialMediaMicroservice.Helper.Twitter
             resource_url += "?" + postBody;
 
             var response = TwitterCommonServices.ProcessWebRequest(authHeader, "GET", resource_url);
-
             return userTweets;
         }
     }

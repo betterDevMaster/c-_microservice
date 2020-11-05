@@ -15,21 +15,18 @@ namespace SocialMediaMicroservice.Controllers
         public async Task<IActionResult> Tweet(string tweetText)
         {
             var result = await new PostTweet().Run(tweetText);
-
             return Ok(result ? "success" : "error");
         }
         [HttpGet]
         public IActionResult ReadUserTweets(string screen_name, int maxNumberOfTweets)
         {
             var result = new ReadUserTweets().Run(screen_name, maxNumberOfTweets);
-
             return Ok(result);
         }
         [HttpGet]
         public IActionResult ReadRetweets(string tweetId)
         {
             var result = new ReadRetweets().Run(tweetId);
-
             return Ok(result);
         }
     }

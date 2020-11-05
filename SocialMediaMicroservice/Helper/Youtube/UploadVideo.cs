@@ -58,9 +58,6 @@ namespace SocialMediaMicroservice.Helper.Youtube
                 //  video.Snippet.PublishedAtRaw = "";
                 //  video.Snippet.Thumbnails = "";
 
-
-
-
                 video.Status = new VideoStatus();
                 video.Status.PrivacyStatus = "public";// "unlisted"; // or "private" or "public"
                 var filePath = @"E:\samplevideo\Sea waves & beach drone video _ Free HD Video - no copyright.mp4"; // Replace with path to actual movie file.

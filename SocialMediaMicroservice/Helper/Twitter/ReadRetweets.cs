@@ -17,10 +17,9 @@ namespace SocialMediaMicroservice.Helper.Twitter
             // oauth application keys
             var oauth_token = "xxx";
             var oauth_token_secret = "xxx";
+
             string authHeader = TwitterCommonServices.GetRequestAuthHeader(retweetsUrl, "GET", oauth_token, oauth_token_secret);
-
             var response = TwitterCommonServices.ProcessWebRequest(authHeader, "GET", retweetsUrl);
-
             return userTweets;
         }
     }

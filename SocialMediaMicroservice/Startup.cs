@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace SocialMediaMicroservice
 {
@@ -68,8 +69,11 @@ namespace SocialMediaMicroservice
             app.UseErrorLogging();
             app.UseCors(MyAllowSpecificOrigins);
             app.UseHttpsRedirection();
-
             app.UseMvc();
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Server started !");
+            });
         }
     }
 }
