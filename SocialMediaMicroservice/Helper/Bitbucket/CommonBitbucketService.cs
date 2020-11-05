@@ -16,9 +16,10 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
     {
         private const string BitbucketKey = "t5GMUyeJxhXbsWCC2U";
         private const string BitbucketSecret = "WsvTBUjcPMjGKuEy4dRYuaHmBMVMB5QC";
+        private const string BitbucketScopes = "snippet+repository%3Awrite+project%3Awrite+pipeline+account+pullrequest+webhook&expires_in=7200";
+        private const string BitbucketAuthFormat = "https://bitbucket.org/site/oauth2/authorize?client_id={0}&response_type=token";
 
-        private const string BitbucketAuthFormat = "https://bitbucket.org/oauth/access_token?client_id={0}&client_secret={1}&grant_type=client_credentials&scope=manage_pages";
-
+        //"https://bitbucket.org/site/oauth2/authorize?client_id{0}&response_type=token";
         public static string BitAccess_token()
         {
             string accessToken = string.Empty;
@@ -33,21 +34,28 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
                 String responseString = reader.ReadToEnd();
 
                 NameValueCollection query = HttpUtility.ParseQueryString(responseString);
-
+                
                 var userAuthData = JsonConvert.DeserializeObject<FacebookAuthModel>(responseString);
-
                 accessToken = userAuthData.accessToken;
             }
 
+            //var request = WebRequest.Create(url) as HttpWebRequest;
+            //string credentials = Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(BitbucketKey));
+            //request.Headers.Add("Authorization", "Basic " + credentials);
+
+            //using (var response = request.GetResponse() as HttpWebResponse)
+            //{
+            //    var reader = new StreamReader(response.GetResponseStream());
+            //    string json = reader.ReadToEnd();
+            //}
+
             if (accessToken.Trim().Length == 0)
                 throw new Exception("No action token detected!");
-
             return accessToken;
         }
         public static string ProcessWebClientRequest(string url)
         {
             string response = string.Empty;
-
             try
             {
                 WebClient wc = new WebClient();
@@ -61,7 +69,6 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
             {
                 Console.WriteLine(ex.Message);
             }
-
             return response;
         }
     }

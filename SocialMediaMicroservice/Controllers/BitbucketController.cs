@@ -11,11 +11,16 @@ namespace SocialMediaMicroservice.Controllers
     [ApiController]
     public class BitbucketController : ControllerBase
     {
-       
         [HttpGet]
         public IActionResult GetBitInfo(string access_token)
         {
             var result = new GetBitBInfo().Run(access_token);
+            return Ok(result ? "success" : "error");
+        }
+        [HttpGet]
+        public async Task<IActionResult> PostBitbucket(string message)
+        {
+            var result = await new GetBitBInfo().RunAccess(message);
             return Ok(result ? "success" : "error");
         }
     }

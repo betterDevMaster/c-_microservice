@@ -2,9 +2,13 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/SocialMediaMicroservice",
+      "sslPort": 0
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:65037/",
-      "sslPort": 44370
+      "sslPort": 44390
     }
   },
   "profiles": {

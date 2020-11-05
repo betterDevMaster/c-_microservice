@@ -36,12 +36,9 @@ namespace SocialMediaMicroservice.Helper.Facebook
                 String responseString = reader.ReadToEnd();
 
                 NameValueCollection query = HttpUtility.ParseQueryString(responseString);
-
                 var userAuthData = JsonConvert.DeserializeObject<FacebookAuthModel>(responseString);
-
                 accessToken = userAuthData.accessToken;
             }
-
             if (accessToken.Trim().Length == 0)
                 throw new Exception("No action token detected!");
 
@@ -50,7 +47,6 @@ namespace SocialMediaMicroservice.Helper.Facebook
 
         public static string GetProfileId(string accessToken)
         {
-
             if (!string.IsNullOrEmpty(accessToken))
             {
                 try
@@ -64,14 +60,12 @@ namespace SocialMediaMicroservice.Helper.Facebook
                     return null;
                 }
             }
-
             return null;
         }
 
         public static string ProcessWebClientRequest(string url)
         {
             string response = string.Empty;
-
             try
             {
                 WebClient wc = new WebClient();
