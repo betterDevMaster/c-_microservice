@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaMicroservice.Helper.Bitbucket;
+using SocialMediaMicroservice.Model;
 
 namespace SocialMediaMicroservice.Controllers
 {
@@ -14,14 +15,15 @@ namespace SocialMediaMicroservice.Controllers
         [HttpGet]
         public IActionResult GetBitInfo(string access_token)
         {
-            var result = new GetBitBInfo().Run(access_token);
-            return Ok(result ? "success" : "error");
+            ResponseModel result = new GetBitBInfo().Run(access_token);
+            return Ok(result);
         }
         [HttpGet]
         public async Task<IActionResult> PostBitbucket(string message)
         {
-            var result = await new GetBitBInfo().RunAccess(message);
-            return Ok(result ? "success" : "error");
+            ResponseModel response;
+            response = await new GetBitBInfo().RunAccess(message);
+            return Ok(response);
         }
     }
 }

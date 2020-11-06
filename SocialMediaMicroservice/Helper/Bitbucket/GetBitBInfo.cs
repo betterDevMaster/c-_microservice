@@ -10,39 +10,48 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
 {
     public class GetBitBInfo
     {
+        ResponseModel response = new ResponseModel();
+
         #region Post token for Bitbucket user
-        public bool Run(string access_token)
+        public ResponseModel Run(string access_token)
         {
-            bool isSuccess = false;
+            response.Success = false; 
             try
             {
                 string url = string.Format("https://bitbucket.org/!api/2.0/user?access_token={0}", access_token); 
-
                 var userInfoStr = CommonBitbucketService.ProcessWebClientRequest(url);
                 if (!string.IsNullOrEmpty(userInfoStr))
                 {
-                    isSuccess = true;
-                    var userInfo = JsonConvert.DeserializeObject<FacebookUserInfoModel>(userInfoStr);
+                    response.Success = true;
+                    //var userInfo = JsonConvert.DeserializeObject<BitbucketModel>(userInfoStr);
+                    response.Data = userInfoStr;
+                    response.Status_Code = 200;
+                }
+                else
+                {
+                    response.Status_Code = 400;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            return isSuccess;
+            return response;
         }
         #endregion
 
         #region Access token for bitbucket
-        public async Task<bool> RunAccess(string message)
+        public async Task<ResponseModel> RunAccess(string message)
         {
-            bool isSuccess = false;
+            response.Success = false;
+            //bool isSuccess = false;
             try
             {
-                var accessToken = CommonBitbucketService.BitAccess_token();
+                response = CommonBitbucketService.BitAccess_token();
+                response.Success = true;
             }
             catch(Exception ex) { }
-            return isSuccess;
+            return response;
         }
         #endregion
     }

@@ -47,7 +47,6 @@ namespace SocialMediaMicroservice.Helper.Youtube
                     name = i.Snippet.Title,
                 }).ToList();
                 //var listPlayList = playList.Execute().Items;
-
                 model.categories = listCategory;
                 model.languages = listLanguage;
                 model.contents = new List<SelectItem>()

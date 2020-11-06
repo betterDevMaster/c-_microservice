@@ -21,7 +21,6 @@ namespace SocialMediaMicroservice.Helper.Facebook
                 var accessToken = CommonFacebookServices.GetAccessToken();
 
                 FacebookClient facebookClient = new FacebookClient(accessToken);
-
                 dynamic messagePost = new ExpandoObject();
                 messagePost.access_token = accessToken;
                 //messagePost.picture = "[A_PICTURE]";
@@ -30,7 +29,6 @@ namespace SocialMediaMicroservice.Helper.Facebook
                 //messagePost.caption = "my caption"; 
                 messagePost.message = message;
                 //messagePost.description = "my description";
-
                 var userId = CommonFacebookServices.GetProfileId(accessToken);
 
                 var result = facebookClient.Post(userId + "/feed", messagePost);
