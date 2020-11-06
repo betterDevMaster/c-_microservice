@@ -14,13 +14,11 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
         public bool Run(string access_token)
         {
             bool isSuccess = false;
-
             try
             {
                 string url = string.Format("https://bitbucket.org/!api/2.0/user?access_token={0}", access_token); 
 
                 var userInfoStr = CommonBitbucketService.ProcessWebClientRequest(url);
-
                 if (!string.IsNullOrEmpty(userInfoStr))
                 {
                     isSuccess = true;

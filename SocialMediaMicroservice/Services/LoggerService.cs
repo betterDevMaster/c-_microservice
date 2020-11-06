@@ -20,7 +20,7 @@ using static JungleUtilityServices.EndPoint;
                     loggedDate = DateTime.Now.ToString(),
                     loggedBy = "LoginMicroservice"
                 };
-              api = await APICall(UTILITY_MICROSERVICE, $"/api/AppLogger/CreateAppLogger", _logger, "post");
+                api = await APICall(UTILITY_MICROSERVICE, $"/api/AppLogger/CreateAppLogger", _logger, "post");
             }
             catch
             {
