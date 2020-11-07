@@ -27,6 +27,8 @@
 
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
 
+    <PackageReference Include="Octokit" Version="0.48.0" />
+
     <PackageReference Include="Sparkle.LinkedInNET" Version="1.0.15" />
 
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />

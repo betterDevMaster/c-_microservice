@@ -30,7 +30,7 @@ using static JungleUtilityServices.EndPoint;
         #endregion
     }
 
-#region ErrorLoggingMiddleware
+        #region ErrorLoggingMiddleware
 
         public class ErrorLoggingMiddleware
         {

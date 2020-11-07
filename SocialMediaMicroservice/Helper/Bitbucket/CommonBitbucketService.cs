@@ -15,11 +15,10 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
 {
     public class CommonBitbucketService
     {
-        
         private const string BitbucketKey = "t5GMUyeJxhXbsWCC2U";//U
         private const string BitbucketSecret = "WsvTBUjcPMjGKuEy4dRYuaHmBMVMB5QC";
-        private const string BitbucketAuthFormat = "https://bitbucket.org/site/oauth2/authorize?client_id={0}&response_type=token";
-       //"https://bitbucket.org/site/oauth2/authorize?client_id{0}&response_type=token";
+        private const string BitbucketAuthFormat = "https://bitbucket.org/site/oauth2/authorize?client_id{0}&response_type=token";
+        //"https://bitbucket.org/site/oauth2/authorize?client_id{0}&response_type=token";
 
         #region Access token in bitbucket
         public static ResponseModel BitAccess_token()
@@ -31,15 +30,14 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
                 string url = string.Format(BitbucketAuthFormat, BitbucketKey, BitbucketSecret);
 
                 WebRequest request = WebRequest.Create(url);
-                //WebResponse response = request.GetResponse();
                 WebResponse response = request.GetResponse();
 
                 var OriginUrl = response.ResponseUri.OriginalString;
                 responce.Data = OriginUrl;
                 responce.Status_Code = 200;
-
                 BitbucketClient client = new BitbucketClient(url, BitbucketKey, BitbucketSecret);
-                //*** Token
+
+                //***Token
                 using (Stream responseStream = response.GetResponseStream())
                 {
                     StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
@@ -52,7 +50,10 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
                 if (accessToken.Trim().Length == 0)
                    throw new Exception("No action token detected!");
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                responce.Message = ex.Message;
+            }
             return responce;
         }
         #endregion
