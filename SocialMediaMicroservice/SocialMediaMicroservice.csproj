@@ -21,7 +21,14 @@
     <PackageReference Include="AWSSDK.S3" Version="3.3.110.21" />
     <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="4.1.0" />
     <PackageReference Include="Google.Apis" Version="1.48.0" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.47.0.1995" />
     <PackageReference Include="Google.Apis.YouTube.v3" Version="1.47.0.2008" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Repositories\" />
     <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration" Version="2.1.10" />
 
