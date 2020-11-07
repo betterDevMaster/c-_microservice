@@ -20,6 +20,7 @@ namespace SocialMediaMicroservice
     {
         public const string AppS3BucketKey = "AppS3Bucket";
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        public const string SwaggerTitle = "Jungle SocialMediaMicroservice";
 
         public Startup(IConfiguration configuration)
         {
@@ -32,10 +33,10 @@ namespace SocialMediaMicroservice
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-            });
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            //});
 
             services.AddCors(options =>
             {
@@ -47,6 +48,13 @@ namespace SocialMediaMicroservice
                 });
             });
             services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
+            // Add S3 to the ASP.NET Core dependency injection framework.
+            services.AddAWSService<Amazon.S3.IAmazonS3>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = SwaggerTitle, Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -55,16 +63,23 @@ namespace SocialMediaMicroservice
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                app.UseSwagger();
+
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("v1/swagger.json", SwaggerTitle);
+                });
             }
             else
             {
                 app.UseHsts();
             }
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            //});
 
             app.UseErrorLogging();
             app.UseCors(MyAllowSpecificOrigins);

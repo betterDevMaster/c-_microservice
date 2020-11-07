@@ -49,13 +49,8 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
             {
                 response = CommonBitbucketService.BitAccess_token();
                 response.Success = true;
-               // BitbucketClient client = new BitbucketClient();
-
             }
-            catch(Exception ex)
-            {
-                response.Message = ex.Message;
-            }
+            catch(Exception ex) { }
             return response;
         }
         #endregion

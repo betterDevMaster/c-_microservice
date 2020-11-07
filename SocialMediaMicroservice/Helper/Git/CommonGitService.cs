@@ -17,7 +17,8 @@ namespace SocialMediaMicroservice.Helper.Git
 {
     public class CommonGitService
     {
-        private const string GitClientID = "c06475b6dc80571ed5a4";
+
+        private const string GitClientID = "c06475b6dc80571ed5a4"; 
         private const string GitClientSecret = "039270f5d81269af6c6d35679d16ad63dff9db63";
         private const string GitAuthorize = "https://github.com/login/oauth/authorize?scope=user:email&client_id={0}";
         private const string AuthorizationEndpoint = "https://github.com/login/oauth/authorize";
