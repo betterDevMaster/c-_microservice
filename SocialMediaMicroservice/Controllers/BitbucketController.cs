@@ -18,6 +18,7 @@ namespace SocialMediaMicroservice.Controllers
             ResponseModel result = new GetBitBInfo().Run(access_token);
             return Ok(result);
         }
+
         [HttpGet]
         public async Task<IActionResult> PostBitbucket(string message)
         {
