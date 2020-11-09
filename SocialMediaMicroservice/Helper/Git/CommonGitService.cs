@@ -18,7 +18,8 @@ namespace SocialMediaMicroservice.Helper.Git
     public class CommonGitService
     {
 
-        private const string GitClientID = "c06475b6dc80571ed5a4"; 
+        private const string GitClientID = "c06475b6dc80571ed5a4";
+        //private const string GitClientID = "c06475b6dc80571ed5a4"; 
         private const string GitClientSecret = "039270f5d81269af6c6d35679d16ad63dff9db63";
         private const string GitAuthorize = "https://github.com/login/oauth/authorize?scope=user:email&client_id={0}";
         private const string AuthorizationEndpoint = "https://github.com/login/oauth/authorize";
@@ -38,7 +39,6 @@ namespace SocialMediaMicroservice.Helper.Git
             {
                 StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
                 String responseString = reader.ReadToEnd();
-
                 NameValueCollection query = HttpUtility.ParseQueryString(responseString);
                 //var userAuthData = JsonConvert.DeserializeObject<BitbucketAuthModel>(responseString);
                 //accessToken = userAuthData.accessToken;
@@ -63,7 +63,10 @@ namespace SocialMediaMicroservice.Helper.Git
                     }
                 }
             }
-            catch (Exception ex) { response.Message = ex.Message; }
+            catch (Exception ex) 
+            {
+                response.Message = ex.Message; 
+            }
             return response;
         }
     }

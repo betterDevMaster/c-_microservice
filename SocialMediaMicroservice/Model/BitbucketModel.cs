@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,5 +32,17 @@ namespace SocialMediaMicroservice.Model
         public string accessToken { get; set; }
         [JsonProperty("token_type")]
         public string tokenType { get; set; }
+    }
+    public class BitbucketRedirect
+    {
+        [Required]
+        public string client_id { get; set; }
+        [Required]
+        public string client_secret { get; set; }
+        [Required]
+        public string code { get; set; }
+        public string redirect_uri { get; set; }
+        public string state { get; set; }
+        public string grant_type { get; set; }
     }
 }
