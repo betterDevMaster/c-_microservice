@@ -23,25 +23,44 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
         private const string BitbucketAuthFormat = "https://bitbucket.org/site/oauth2/authorize?client_id={0}&response_type=token";
                                                  //"https://bitbucket.org/site/oauth2/authorize?client_id{0}&response_type=token";
         private const string BitbucketToken = "https://bitbucket.org/site/oauth2/access_token";
+
         #region Access token in bitbucket
         public static ResponseModel BitAccess_token()
         {
             ResponseModel responce = new ResponseModel();
             try
             {
+                //string urls = "https://bitbucket.org/!api/2.0/user/";
+                //string margecredentials = string.Format("{0}:{1}", "t5GMUyeJxhXbsWCC2U", "WsvTBUjcPMjGKuEy4dRYuaHmBMVMB5QC");
+                //byte[] bytecredential = UTF8Encoding.UTF8.GetBytes(margecredentials);
+                //var cre = Convert.ToBase64String(bytecredential);
+                //var res = WebRequest.Create(urls) as HttpWebRequest;
+                //res.ContentType = "application/json";
+                //res.Method = "GET";
+
+                //res.Headers.Add("Authorization", "Basic" + cre);
+                //using (var resp = res.GetResponse() as HttpWebResponse)
+                //{
+                //    var reader = new StreamReader(resp.GetResponseStream());
+                //    var json = reader.ReadToEnd();
+                //}
+
                 string accessToken = string.Empty;
                 string url = string.Format(BitbucketAuthFormat, BitbucketKey, BitbucketSecret);
-                
-                //WebRequest request = WebRequest.Create(url);
-                //WebResponse response = request.GetResponse();
-                //var OriginUrl = response.ResponseUri.OriginalString;
+
+                WebRequest request = WebRequest.Create(url);
+                WebResponse response = request.GetResponse();
+                var OriginUrl = response.ResponseUri.OriginalString;
 
                 responce.Data = url;
                 responce.Status_Code = 200;
-                if (accessToken.Trim().Length == 0)
-                   throw new Exception("No action token detected!");
+                if (accessToken.Trim().Length == 1)
+                throw new Exception("No action token detected!");
             }
-            catch (Exception ex) { responce.Message = ex.Message; }
+            catch (Exception ex)
+            {
+                responce.Message = ex.Message;
+            }
             return responce;
         }
         #endregion
@@ -80,12 +99,11 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(redirect), Encoding.UTF8, "application/x-www-form-urlencoded");
-
                     using (var re = await httpClient.PostAsync(BitbucketToken, content))
                     {
                         string apiResponse = await re.Content.ReadAsStringAsync();
                         response.Data = apiResponse;
-                        //Callback = JsonConvert.DeserializeObject<RedirectBack>(apiResponse);
+                      //Callback = JsonConvert.DeserializeObject<RedirectBack>(apiResponse);
                     }
                 }
             }
@@ -95,6 +113,5 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
             }
             return response;
         }
-
     }
 }

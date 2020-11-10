@@ -50,10 +50,11 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
                 response = CommonBitbucketService.BitAccess_token();
                 response.Success = true;
             }
-            catch(Exception ex) { }
+            catch(Exception ex) { throw ex; }
             return response;
         }
         #endregion
+
         #region CallBack to site in Git
         public async Task<ResponseModel> CallBackToBitbucket(string code)
         {
