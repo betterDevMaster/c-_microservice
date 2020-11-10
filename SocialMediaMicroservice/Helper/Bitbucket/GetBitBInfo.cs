@@ -54,5 +54,22 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
             return response;
         }
         #endregion
+        #region CallBack to site in Git
+        public async Task<ResponseModel> CallBackToBitbucket(string code)
+        {
+            response.Success = false;
+            try
+            {
+                response = await CommonBitbucketService.BitbucketCallback(code);
+                if (response.Data != null)
+                {
+                    response.Success = true;
+                    response.Status_Code = 200;
+                }
+            }
+            catch (Exception ex) { response.Message = ex.Message; }
+            return response;
+        }
+        #endregion
     }
 }

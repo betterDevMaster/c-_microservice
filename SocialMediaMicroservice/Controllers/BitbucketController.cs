@@ -13,9 +13,9 @@ namespace SocialMediaMicroservice.Controllers
     public class BitbucketController : ControllerBase
     {
         [HttpGet]
-        public IActionResult GetBitInfo(string access_token)
+        public IActionResult GetBitInfo(string details)
         {
-            ResponseModel result = new GetBitBInfo().Run(access_token);
+            ResponseModel result = new GetBitBInfo().Run(details);
             return Ok(result);
         }
 
@@ -24,6 +24,12 @@ namespace SocialMediaMicroservice.Controllers
         {
             ResponseModel response;
             response = await new GetBitBInfo().RunAccess(message);
+            return Ok(response);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetToken(string code)
+        {
+            ResponseModel response = await new GetBitBInfo().CallBackToBitbucket(code);
             return Ok(response);
         }
     }

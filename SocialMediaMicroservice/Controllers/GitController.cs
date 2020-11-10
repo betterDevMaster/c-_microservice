@@ -20,7 +20,7 @@ namespace SocialMediaMicroservice.Controllers
             return Ok(response);
         }
         [HttpPost]
-        //POST https://github.com/login/oauth/access_token
+       //POST https://github.com/login/oauth/access_token
         public async Task<IActionResult> CallBackToSite(RedirectBack model)
         {
             ResponseModel response = await new GitInfo().CallBackToSite(model);
