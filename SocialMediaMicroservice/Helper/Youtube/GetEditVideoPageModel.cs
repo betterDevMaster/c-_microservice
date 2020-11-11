@@ -1,6 +1,7 @@
 ﻿using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
+using Google.Apis.YouTube.v3.Data;
 using SocialMediaMicroservice.Model;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,8 @@ namespace SocialMediaMicroservice.Helper.Youtube
                 var model = new EditVideoPageModel();
                 var youtubeService = new YouTubeService(new BaseClientService.Initializer()
                 {
-                    ApiKey = "AIzaSyDxag54giZC4yPfNCa20z_RkVu01Zyehxs", // need to change later
+                    // ApiKey = "AIzaSyDxag54giZC4yPfNCa20z_RkVu01Zyehxs", // need to change later
+                    ApiKey = "AIzaSyA1N-_xPPAz-O1l-RPe7KouhDUdcobCw_M",        //New api key by Suryabhan
                     ApplicationName = this.GetType().ToString()
                 });
 
@@ -46,7 +48,25 @@ namespace SocialMediaMicroservice.Helper.Youtube
                     id = i.Id,
                     name = i.Snippet.Title,
                 }).ToList();
-                //var listPlayList = playList.Execute().Items;
+                // Code modifier by suryabhan
+                //var listPlayList = playList.Execute().Items; 
+                var playlist = new Playlist();
+                playlist.Snippet = new PlaylistSnippet();
+                playlist.Snippet.Title = "Test Playlist";
+                playlist.Snippet.Description = "A playlist create with the youtub API v3";
+                playlist.Status = new PlaylistStatus();
+                playlist.Status.PrivacyStatus = "public";
+                playlist = await youtubeService.Playlists.Insert(playlist, "snippet,status").ExecuteAsync();
+
+                var newPlaylistItem = new PlaylistItem();
+                newPlaylistItem.Snippet = new PlaylistItemSnippet();
+                newPlaylistItem.Snippet.PlaylistId = playlist.Id;
+                newPlaylistItem.Snippet.ResourceId = new ResourceId();
+                newPlaylistItem.Snippet.ResourceId.Kind = "youtube#video";
+                newPlaylistItem.Snippet.ResourceId.VideoId = "GNRMeaz6QRI";
+                newPlaylistItem = await youtubeService.PlaylistItems.Insert(newPlaylistItem, "snippet").ExecuteAsync();
+
+
                 model.categories = listCategory;
                 model.languages = listLanguage;
                 model.contents = new List<SelectItem>()
@@ -105,7 +125,7 @@ namespace SocialMediaMicroservice.Helper.Youtube
                 };
                 return model;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 return null;
             }

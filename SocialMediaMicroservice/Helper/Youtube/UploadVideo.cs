@@ -51,7 +51,7 @@ namespace SocialMediaMicroservice.Helper.Youtube
                 //  video.Snippet.DefaultAudioLanguage = "";
                 //  video.Snippet.DefaultLanguage = "";
                 //  video.Snippet.Description = "";
-                ////  video.Snippet.Etag = [""];
+                //  video.Snippet.Etag = [""];
                 //  video.Snippet.LiveBroadcastContent = "";
                 //  video.Snippet.Localized = "";
                 //  video.Snippet.PublishedAt = DateTime.Now;
