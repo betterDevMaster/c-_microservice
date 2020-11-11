@@ -54,7 +54,6 @@ namespace SocialMediaMicroservice.Helper.Git
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(redirect), Encoding.UTF8, "application/json");
-
                     using (var re = await httpClient.PostAsync(TokenEndpoint, content))
                     {
                         string apiResponse = await re.Content.ReadAsStringAsync();
