@@ -21,7 +21,7 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
         private const string BitbucketKey = "a6x9YfwRArk8CXKmWB";//"t5GMUyeJxhXbsWCC2U";
         private const string BitbucketSecret = "Whbn8X58mGMdQzVxNPHZ4qHSrBYSnG9a";//"WsvTBUjcPMjGKuEy4dRYuaHmBMVMB5QC";
         private const string BitbucketAuthFormat = "https://bitbucket.org/site/oauth2/authorize?client_id={0}&response_type=token";
-                                                 //"https://bitbucket.org/site/oauth2/authorize?client_id{0}&response_type=token";
+        //"https://bitbucket.org/site/oauth2/authorize?client_id{0}&response_type=token";
         private const string BitbucketToken = "https://bitbucket.org/site/oauth2/access_token";
 
         #region Access token in bitbucket
@@ -55,7 +55,7 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
                 responce.Data = url;
                 responce.Status_Code = 200;
                 if (accessToken.Trim().Length == 1)
-                throw new Exception("No action token detected!");
+                    throw new Exception("No action token detected!");
             }
             catch (Exception ex)
             {
@@ -103,7 +103,7 @@ namespace SocialMediaMicroservice.Helper.Bitbucket
                     {
                         string apiResponse = await re.Content.ReadAsStringAsync();
                         response.Data = apiResponse;
-                      //Callback = JsonConvert.DeserializeObject<RedirectBack>(apiResponse);
+                        //Callback = JsonConvert.DeserializeObject<RedirectBack>(apiResponse);
                     }
                 }
             }
