@@ -13,6 +13,7 @@ namespace SocialMediaMicroservice.Model
     {
         public string title { get; set; }
         public string url { get; set; }
+
     }
     public class YoutubeUploadModel
     {
@@ -44,5 +45,13 @@ namespace SocialMediaMicroservice.Model
     {
         public string id { get; set; }
         public string name { get; set; }
+    }
+    //DO NOT CONFUSED with Youtube Channel and Our VideoJungle Channel~
+    public class GetLatest
+    {
+        public string YoutubeChannelName { get; set; }
+        public string YoutubeChannelIcon { get; set; }
+        public string videoTitle { get; set; }
+        public string  videoDescription { get; set; }
     }
 }
