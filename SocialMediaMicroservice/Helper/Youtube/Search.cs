@@ -51,6 +51,7 @@ namespace SocialMediaMicroservice.Helper.Youtube
                 {
                     case "youtube#video":
                         obj.title = searchResult.Snippet.Title;
+                        obj.regionCode = regionCode;
                         obj.url = "https://youtu.be/" + searchResult.Id.VideoId;
                         searchmodel.Add(obj);
                         videos.Add(String.Format("{0} ({1})", searchResult.Snippet.Title, "https://youtu.be/" + searchResult.Id.VideoId));

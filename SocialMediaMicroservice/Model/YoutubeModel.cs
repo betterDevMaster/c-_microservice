@@ -55,6 +55,6 @@ namespace SocialMediaMicroservice.Model
         public string YoutubeChannelName { get; set; }
         public string YoutubeChannelIcon { get; set; }
         public string videoTitle { get; set; }
-        public string  videoDescription { get; set; }
+        public string videoDescription { get; set; }
     }
 }
