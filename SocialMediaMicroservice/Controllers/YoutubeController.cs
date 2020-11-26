@@ -15,9 +15,9 @@ namespace SocialMediaMicroservice.Controllers
     public class YoutubeController : ControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> Search(string searchtext)
+        public async Task<IActionResult> Search(string searchtext, string regionCode)
         {
-            var result = await new Search().Run(searchtext);
+            var result = await new Search().Run(searchtext, regionCode);
             return Ok(result);
         }
 

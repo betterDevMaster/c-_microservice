@@ -20,7 +20,7 @@ namespace SocialMediaMicroservice.Helper.Youtube
         /// Please ensure that you have enabled the YouTube Data API for your project.
         /// </summary>
 
-        public async Task<List<YoutubeSearchModel>> Run(string searchtext)
+        public async Task<List<YoutubeSearchModel>> Run(string searchtext, string regionCode)
         {
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
@@ -32,7 +32,7 @@ namespace SocialMediaMicroservice.Helper.Youtube
             var searchListRequest = youtubeService.Search.List("snippet");
             searchListRequest.Q = searchtext; // Replace with your search term.
             searchListRequest.MaxResults = 50;
-
+            searchListRequest.RegionCode = regionCode;
             // Call the search.list method to retrieve results matching the specified query term.
             var searchListResponse = await searchListRequest.ExecuteAsync();
 
@@ -65,8 +65,12 @@ namespace SocialMediaMicroservice.Helper.Youtube
                         break;
                 }
             }
+
+            Console.WriteLine(String.Format("Videos:\n{0}\n", string.Join("\n", videos)));
+            Console.WriteLine(String.Format("Channels:\n{0}\n", string.Join("\n", channels)));
+            Console.WriteLine(String.Format("Playlists:\n{0}\n", string.Join("\n", playlists)));
+
             return searchmodel;
-            // Console.WriteLine(String.Format("Videos:\n{0}\n", string.Join("\n", videos)));
         }
     }
 }
