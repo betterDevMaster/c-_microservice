@@ -27,7 +27,8 @@ namespace SocialMediaMicroservice.Helper.Youtube
                 var youtubeService = new YouTubeService(new BaseClientService.Initializer()
                 {
                    // ApiKey = "AIzaSyA1N-_xPPAz-O1l-RPe7KouhDUdcobCw_M",
-                    ApiKey = "AIzaSyA8hPK8F-8BbO-8H6tQZuiopY5nYES1UR0",
+                    //ApiKey = "AIzaSyA8hPK8F-8BbO-8H6tQZuiopY5nYES1UR0",
+                    ApiKey = "AIzaSyAmKcGIrqC2oeeqIuqeKhbDfQVEG5F76sE",
                     ApplicationName = this.GetType().ToString()
                 });
 

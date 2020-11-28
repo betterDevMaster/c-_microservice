@@ -25,7 +25,8 @@ namespace SocialMediaMicroservice.Helper.Youtube
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
                 //ApiKey = "AIzaSyAYiCDz7VoCjNFoE7fsVPbPY9iWyLOMth8",      //this key is not working
-                ApiKey = "AIzaSyA8hPK8F-8BbO-8H6tQZuiopY5nYES1UR0",        //New api key by Sonny
+                // ApiKey = "AIzaSyCQhQkR-EYB3ukj-Yi79W9vu7GOKZfQHSM",        //New api key by Sonny
+                ApiKey = "AIzaSyAmKcGIrqC2oeeqIuqeKhbDfQVEG5F76sE",        //New api key by Nguyen
                 ApplicationName = this.GetType().ToString()
             });
 
@@ -33,9 +34,18 @@ namespace SocialMediaMicroservice.Helper.Youtube
             searchListRequest.Q = searchtext; // Replace with your search term.
             searchListRequest.MaxResults = 50;
             searchListRequest.RegionCode = regionCode;
+            // searchListRequest.RelevanceLanguage = regionCode;
             // Call the search.list method to retrieve results matching the specified query term.
-            var searchListResponse = await searchListRequest.ExecuteAsync();
 
+            Google.Apis.YouTube.v3.Data.SearchListResponse searchListResponse = null;
+            try
+            {
+                searchListResponse = await searchListRequest.ExecuteAsync();
+            }
+            catch (Exception ex)
+            {
+                return new List<YoutubeSearchModel>();
+            }
             List<string> videos = new List<string>();
             List<string> channels = new List<string>();
             List<string> playlists = new List<string>();
