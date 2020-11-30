@@ -17,6 +17,18 @@ namespace SocialMediaMicroservice.Model
         public string title { get; set; }
         public string url { get; set; }
         public string regionCode { get; set; }
+        public string description { get; set; }
+        public string picture { get; set; }
+        public string thumbnail { get; set; }
+        public string publishedAt { get; set; }
+        public string channelId { get; set; }
+        public string channelTitle { get; set; }
+        public string duration { get; set; }
+        public string viewCount { get; set; }
+        public string likeCount { get; set; }
+        public string dislikeCount { get; set; }
+        public string favoriteCount { get; set; }
+        public string commentCount { get; set; }
     }
     public class YoutubeUploadModel
     {
