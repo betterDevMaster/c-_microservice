@@ -25,7 +25,7 @@ namespace SocialMediaMicroservice.Helper.Youtube
 
         public async Task<List<YoutubeSearchModel>> Run(string searchtext, string regionCode)
         {
-            var ApiKey = "AIzaSyAmKcGIrqC2oeeqIuqeKhbDfQVEG5F76sE";
+            var ApiKey = "AIzaSyA8hPK8F-8BbO-8H6tQZuiopY5nYES1UR0";
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
                 ApiKey = ApiKey,        //New api key by Nguyen
