@@ -49,7 +49,7 @@ namespace SocialMediaMicroservice.Controllers
         {
             ResponseModel model;
             model = await new Helper.Youtube.GetLatest().GetVideoList(regioncode);
-            return Ok(model != null ? model : null);
+            return Ok(model != null ? model.Data : null);
         }
     }
 }

@@ -25,6 +25,7 @@ namespace SocialMediaMicroservice.Helper.Youtube
                 {
                     // ApiKey = "AIzaSyDxag54giZC4yPfNCa20z_RkVu01Zyehxs", // need to change later
                     ApiKey = "AIzaSyA1N-_xPPAz-O1l-RPe7KouhDUdcobCw_M",        //New api key by Suryabhan
+                    //ApiKey = "AIzaSyDEyXRUAId5G2kTwitTyyEHi-ZNL09AvLI",
                     ApplicationName = this.GetType().ToString()
                 });
 
